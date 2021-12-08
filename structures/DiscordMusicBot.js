@@ -98,8 +98,8 @@ class DiscordMusicBot extends Client {
                 typeof message == "string"
                   ? { content: message }
                   : message.type && message.type === "rich"
-                  ? { embeds: [message] }
-                  : message,
+                    ? { embeds: [message] }
+                    : message,
             },
           });
       };
@@ -162,23 +162,23 @@ class DiscordMusicBot extends Client {
       )
       .on("trackStart", async (player, track) => {
         this.SongsPlayed++;
-        let TrackStartedEmbed = new MessageEmbed()
-          .setAuthor(`Now playing ♪`, this.botconfig.IconURL)
-          .setThumbnail(player.queue.current.displayThumbnail())
-          .setDescription(`[${track.title}](${track.uri})`)
-          .addField("Requested by", `${track.requester}`, true)
-          .addField(
-            "Duration",
-            `\`${prettyMilliseconds(track.duration, {
-              colonNotation: true,
-            })}\``,
-            true
-          )
-          .setColor(this.botconfig.EmbedColor);
-        //.setFooter("Started playing at");
-        let NowPlaying = await client.channels.cache
-          .get(player.textChannel)
-          .send(TrackStartedEmbed);
+        // let TrackStartedEmbed = new MessageEmbed()
+        //   .setAuthor(`Now playing ♪`, this.botconfig.IconURL)
+        //   .setThumbnail(player.queue.current.displayThumbnail())
+        //   .setDescription(`[${track.title}](${track.uri})`)
+        //   .addField("Requested by", `${track.requester}`, true)
+        //   .addField(
+        //     "Duration",
+        //     `\`${prettyMilliseconds(track.duration, {
+        //       colonNotation: true,
+        //     })}\``,
+        //     true
+        //   )
+        //   .setColor(this.botconfig.EmbedColor);
+        // //.setFooter("Started playing at");
+        // let NowPlaying = await client.channels.cache
+        //   .get(player.textChannel)
+        //   .send(TrackStartedEmbed);
         player.setNowplayingMessage(NowPlaying);
       })
       .on("queueEnd", (player) => {
@@ -201,8 +201,8 @@ class DiscordMusicBot extends Client {
           if (!cmd.name || !cmd.description || !cmd.run)
             return this.log(
               "Unable to load Command: " +
-                file.split(".")[0] +
-                ", Reason: File doesn't had run/name/desciption"
+              file.split(".")[0] +
+              ", Reason: File doesn't had run/name/desciption"
             );
           this.commands.set(file.split(".")[0].toLowerCase(), cmd);
           this.log("Command Loaded: " + file.split(".")[0]);
