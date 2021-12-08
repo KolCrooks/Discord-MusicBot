@@ -182,11 +182,11 @@ class DiscordMusicBot extends Client {
         player.setNowplayingMessage(NowPlaying);
       })
       .on("queueEnd", (player) => {
-        let QueueEmbed = new MessageEmbed()
-          .setAuthor("The queue has ended", this.botconfig.IconURL)
-          .setColor(this.botconfig.EmbedColor)
-          .setTimestamp();
-        client.channels.cache.get(player.textChannel).send(QueueEmbed);
+        // let QueueEmbed = new MessageEmbed()
+        //   .setAuthor("The queue has ended", this.botconfig.IconURL)
+        //   .setColor(this.botconfig.EmbedColor)
+        //   .setTimestamp();
+        // client.channels.cache.get(player.textChannel).send(QueueEmbed);
         if (!this.botconfig["24/7"]) player.destroy();
       });
   }
