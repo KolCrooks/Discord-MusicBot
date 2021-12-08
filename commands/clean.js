@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, SnowflakeUtil } = require("discord.js");
 
 module.exports = {
     name: "clean",
@@ -18,7 +18,7 @@ module.exports = {
      */
     run: async (client, message, args, { GuildDB }) => {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You don't have permission to use this command!");
-        await message.channel.messages.fetch({ limit: 100 }).then((messages) => { message.channel.bulkDelete(messages.filter(m => m.content.startsWith("!") || m.author.id == client.user.id)); });
+        await message.channel.messages.fetch({ limit: 100, after: SnowflakeUtil.generate(Date.now() - 13 * 1000 * 60 * 60 * 24) }).then((messages) => { message.channel.bulkDelete(messages.filter(m => m.content.startsWith("!") || m.author.id == client.user.id)); });
     },
 
     SlashCommand: {
